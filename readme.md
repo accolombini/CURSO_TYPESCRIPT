@@ -3,6 +3,7 @@
 1. __Superset de JavaScript__: Qualquer código JavaScript é código TypeScript válido.
 2. __Tipagem Estática__: Você pode definir os tipos das variáveis, parâmetros e retornos de funções. Isso ajuda a evitar erros no tempo de execução.
 3. __Compilação para JavaScript__: TypeScript precisa ser "transpilado" para JavaScript antes de ser executado.
+4. __JavaScript__: o browser não interpretará typescript, assim seu código typescript deverá ser convertido para uma versão que for a sua recomendação do javascrit para ser executado pelo browser.
 
 ## Benefícioas do TypeScript
 
@@ -106,24 +107,69 @@
 ### Configurando localmente
 
 ```script
-mkdir meu-projeto
-cd meu-projeto
-npm init -y
+  mkdir meu-projeto
+  cd meu-projeto
+  npm init -y
+```
+
+### Instalando um servidor simples para auxiliar no processo de testes e desenvolvimento
+
+```script
+  npm i -s live-server  
+  
+  <!-- Note que o npm foi usado com a opção -s apenas para salvar a dependência, lembrando que -g instalaria globalmente. -->
+```
+  __Live-Server instalado:__ é possível deixá-lo em execução em segundo plano com o comando, isso será importante, pois qualquer alteração será renderizada no seu browser sem a necessidade de realizar o reload manualmente:
+
+  ```script
+    npm start
+  ```
+
+  __Automatizando a compilação:__ outra automação importante é a compilação automática do arquivo .ts para o arquivo .js. Para se conseguir isso, basta rodar o comando npx -w, se sua aplicação for global use __tsc -w__:
+  
+  ```script
+    npx -w
+  ```
+
+### Para automatizar a execução podemos gerar um script no arquivo package.json
+
+```json
+  {
+  "name": "curso_typescript",
+  "version": "1.0.0",
+  "description": "1. __Superset de JavaScript__: Qualquer código JavaScript é código TypeScript válido. 2. __Tipagem Estática__: Você pode definir os tipos das variáveis, parâmetros e retornos de funções. Isso ajuda a evitar erros no tempo de execução. 3. __Compilação para JavaScript__: TypeScript precisa ser \"transpilado\" para JavaScript antes de ser executado.",
+  "main": "index.js",
+  "scripts": { 
+    "//comment": "Aqui em script adiciona os scripts que julgar interessante para automatizar seu projeto.",  
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "keywords": [],
+  "author": "ACC",
+  "license": "ISC",
+  "type": "commonjs",
+  "files": [],
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
 ```
 
 Isso irá criar um arquivo package.json no projeto
 
 ### Instalando typescript localmente
-
-npm install typescript --save-dev
-
+```script
+  npm install typescript --save-dev
+```
 ### Crie um Arquivo tsconfig.json
-
-npx tsc --init
+```script
+  npx tsc --init
+```
 
 ##### Exemplo de um arquivo de configuração básico:
 
-```javaScript 
+```json 
     {
       "compilerOptions": {
        "target": "ES6",                // Especifica o JavaScript gerado

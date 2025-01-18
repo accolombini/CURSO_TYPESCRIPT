@@ -1,7 +1,7 @@
 // Neste arquivo, vamos conhecer o processo de compilação do TypeScript e a compatibilidade com diferentes ambientes.
 
 // Declaração de uma variável `a` contendo a mensagem de teste.
-const a = "Teste TS (compilação)";
+const a = "Teste TS (compilação com npx e usando live-server!)";
 
 // Verificação do ambiente de execução:
 // Verifica se o objeto `document` está definido, indicando que o código está sendo executado em um navegador.
