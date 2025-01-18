@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
-    /* Basic Options */
-    "target": "es6", /* Atualizado para ES6 */
-    "module": "commonjs",
-    "esModuleInterop": true,
+    "target": "es6",
+    "module": "esnext",
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
-
-    /* Additional Options */
-    "forceConsistentCasingInFileNames": true /* Ajuda a evitar problemas com sensibilidade a maiúsculas/minúsculas */
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
