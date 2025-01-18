@@ -248,3 +248,61 @@ __Automatizando compilação e execução__:
 ```TypeScript
   npx tsc <arquivo.ts> && node <arquivo.js>
 ```
+### Feitas as configurações iniciais veja como fica o arquivo tsconfig.json:
+
+```json
+  {
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+__Confira também o arquivo package.json__
+
+```json
+{
+  "name": "curso_typescript",
+  "version": "1.0.0",
+  "description": "1. __Superset de JavaScript__: Qualquer código JavaScript é código TypeScript válido. 2. __Tipagem Estática__: Você pode definir os tipos das variáveis, parâmetros e retornos de funções. Isso ajuda a evitar erros no tempo de execução. 3. __Compilação para JavaScript__: TypeScript precisa ser \"transpilado\" para JavaScript antes de ser executado. 4. __JavaScript__: o browser não interpretará typescript, assim seu código typescript deverá ser convertido para uma versão que for a sua recomendação do javascrit para ser executado pelo browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "watch": "tsc -w",
+    "start": "live-server ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/accolombini/CURSO_TYPESCRIPT.git"
+  },
+  "keywords": [],
+  "author": "ACC",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/accolombini/CURSO_TYPESCRIPT/issues"
+  },
+  "homepage": "https://github.com/accolombini/CURSO_TYPESCRIPT#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "live-server": "^1.2.2",
+    "typescript": "^5.7.3"
+  }
+}
+```
+#### Para iniciar os trabalhos, basta executar o seguinte comando no terminal integrado e seu projeto estará automatizado
+
+```script
+  npm start
+``` 
+```script
+  npm run watch
+````

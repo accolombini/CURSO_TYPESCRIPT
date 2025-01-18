@@ -2,6 +2,7 @@
 // Importante o typescript não faz distinção entre valores reais valores inteiros.
 // Fique atento com boolean, pois um valor tipo 1 não significa true, e sim um valor numérico, logo um erro para uma variável booleana.
 // Algo legal => caso não defina o tipo na declaração ou atribua um valor para que o tipo seja inferido, o typescript aceitara valores de tipos diferentes, mas não permitirá que a variável seja reatribuída com um valor de outro tipo.
+// Por fim: note que estarei usando sempre duas formas de exibição de resultados, console.log e document.body -> nos testes estarei usando ou melhor visualizando o que for tratado como document.body.innerHTML.
 
 // let nome: any = 'João';
 
@@ -100,3 +101,131 @@ carro = {
 };
 console.log(carro); // Continua exibindo no console
 document.body.innerHTML += `<p>Carro: ${JSON.stringify(carro)} (Tipo: ${typeof carro})</p>`; // Adiciona ao corpo da página
+
+// Funções extramentes importantes para qualquer sistema computacional -> vamos aos parâmetros
+
+function retornaMeuNome(): string {
+    return nome;
+}
+
+console.log(retornaMeuNome());
+document.body.innerHTML += `<p>nome: ${retornaMeuNome()}</p>`;
+
+// Função sem retorno
+
+function digaOi(): void {
+    console.log('Oi');
+    document.body.innerHTML += `<p>Oi!!!</p>`;
+}
+
+digaOi();
+
+function multiplicar(numA: number, numB: number): number {
+    return numA * numB;
+}
+
+console.log(multiplicar(2, 3));
+document.body.innerHTML += `<p>Multiplica: ${multiplicar(2.7, 3)}</p>`;
+
+// Atribuindo uma função a uma variável ou a uma constante
+
+const somar = function(numA: number, numB: number): number {
+    return numA + numB;
+}
+
+console.log(somar(2, 3));
+document.body.innerHTML += `<p>Somar: ${somar(2, 3.5)}</p>`;
+
+// Manipulando o DOM de fomra mais eficiente
+
+// Para exibir textos
+function exibir(mensagem: string): void {
+    const elemento = document.createElement('p');
+    elemento.textContent = mensagem;
+    document.body.appendChild(elemento);
+}
+
+exibir('Olá, mundo!'); // Exibe: "Olá, mundo!"
+
+// Para exibir números -> note que precisaremos converter o número para string
+function exibirnum(mensagem: number): void {
+    const elemento = document.createElement('p');
+    elemento.textContent = mensagem.toString(); // Converte número para string
+    document.body.appendChild(elemento);
+}
+
+exibirnum(42); // Exibe: "42"
+
+// Para exibir objetos -> note que precisaremos converter o objeto para string
+function exibirobj(mensagem: object): void {
+    const elemento = document.createElement('p');
+    elemento.textContent = JSON.stringify(mensagem); // Converte objeto para string
+    document.body.appendChild(elemento);
+}
+
+exibirobj({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}'
+
+// Para exibir arrays -> note que precisaremos converter o array para string
+function exibirarray(mensagem: any[]): void {
+    const elemento = document.createElement('p');
+    elemento.textContent = JSON.stringify(mensagem); // Converte array para string
+    document.body.appendChild(elemento);
+}
+
+exibirarray([1, 2, 3]); // Exibe: "[1, 2, 3]"
+exibirarray(['maçã', 'banana', 'laranja']); // Exibe: '["maçã", "banana", "laranja"]'
+
+// Exibir qualquer tipo usando any
+function exibirqualquer(mensagem: any): void {
+    const elemento = document.createElement('p');
+    elemento.textContent = mensagem;
+    document.body.appendChild(elemento);
+}
+
+exibirqualquer('Olá, mundo!'); // Exibe: "Olá, mundo!"
+exibirqualquer(42); // Exibe: "42"
+exibirqualquer({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}'
+exibirqualquer([1, 2, 3]); // Exibe: "[1, 2, 3]"
+exibirqualquer('melão'); // Exibe: "maçã"
+
+// Boas práticas de tipagem => use typeof
+function exibirqq(mensagem: any): void {
+    const elemento = document.createElement('p');
+    if (typeof mensagem === 'object') {
+        elemento.textContent = JSON.stringify(mensagem);
+    } else {
+        elemento.textContent = String(mensagem);
+    }
+    document.body.appendChild(elemento);
+}
+
+exibirqq('Olá, mundo!'); // Exibe: "Olá, mundo!"
+exibirqq(42); // Exibe: "42"
+exibirqq({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}'
+exibirqq([1, 2, 3]); // Exibe: "[1, 2, 3]"
+exibirqq('abacaxi'); // Exibe: "maçã" 
+
+// Usando de forma mais controlado o typeof
+
+function exibirtof(mensagem: string | number | object): void {
+    // Cria um elemento <p> para adicionar ao DOM
+    const elemento = document.createElement('p');
+
+    // Verifica se a mensagem é um objeto
+    if (typeof mensagem === 'object') {
+        // Converte o objeto ou array em uma string legível
+        elemento.textContent = JSON.stringify(mensagem, null, 2);
+    } else {
+        // Converte string ou número para texto diretamente
+        elemento.textContent = String(mensagem);
+    }
+
+    // Adiciona o elemento <p> ao body do documento
+    document.body.appendChild(elemento);
+}
+
+exibirtof('Olá, mundo!'); // Exibe: "Olá, mundo!"
+exibirtof(42); // Exibe: "42"
+exibirtof({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}'
+exibirtof([1, 2, 3]); // Exibe: "[1, 2, 3]"
+exibirtof('pera'); // Exibe: "maçã"
