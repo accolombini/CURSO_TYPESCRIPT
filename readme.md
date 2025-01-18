@@ -128,8 +128,19 @@
   __Automatizando a compilação:__ outra automação importante é a compilação automática do arquivo .ts para o arquivo .js. Para se conseguir isso, basta rodar o comando npx -w, se sua aplicação for global use __tsc -w__:
   
   ```script
-    npx -w
+    npx tsc -w
   ```
+
+  __Preparando os arquivos .ts:__ considerando essa configuração básica (descrita acima) nos arquivos typescripts, será preciso adicionar algo como:
+
+  ```typeScript
+    document.body.innerHTML += `<p>${message}</p>`;
+  ```
+__Ou ainda:__
+
+```TypeScript
+  document.body.innerHTML += `<p>Nome: ${nome}</p>`;
+```
 
 ### Para automatizar a execução podemos gerar um script no arquivo package.json
 
