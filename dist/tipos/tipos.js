@@ -278,4 +278,115 @@ exibirtof(func.supervisores); // Exibe: '{"supervisores": ["João", "Maria"], "b
 exibirtof(func.batPonto(9)); // Exibe: "Ponto normal"
 exibirtof(func.batPonto(7)); // Exibe: "Fora do horário de trabalho"
 exibirtof(func.batPonto(3)); // Exibe: "Ponto normal"
-// =============================================Fim
+let func2 = {
+    supervisores: ['Julieta', 'Maurício'],
+    batPonto: (horas) => {
+        if (horas <= 8) {
+            return 'Ponto normal';
+        }
+        else {
+            return 'Fora do horário de trabalho';
+        }
+    }
+};
+exibirtof(func2.supervisores); // Exibe: '{"supervisores": ["João", "Maria"], "batPonto": ƒ}'
+exibirtof(func2.batPonto(7)); // Exibe: "Ponto normal"
+// Trabalhando com Union Types => neste caso, vamos ter number ou string, o operador de Uniot Types é |.
+let nota = 10;
+// console.log(`Minha nota é ${nota}!`)
+exibirqq(`Minha bota é ${nota}!`);
+nota = `25`;
+//console.log(`Minha nota é ${nota}!`)
+exibirqq(`Minha bota é ${nota}!`);
+// Como podemos fazer a checagem de tipos de forma manual?
+let valor = 30;
+if (typeof valor === 'number') {
+    //console.log(`O valor ${valor} é um number!`)
+    exibirqq(`O valor ${valor} é um number!`);
+}
+else {
+    // console.log(`O valor ${valor} é uma string!`)
+    exibirqq(`O valor ${valor} é uma string!`);
+}
+// O Tipo Never -> quando uma funcao nunca vai retornar nada, ou seja, ela nunca vai ser executado. A função nunca terminará de forma correta.
+function falha(mensagem) {
+    // Exibe a mensagem de erro no console
+    console.error(`Erro: ${mensagem}`);
+    // Cria um elemento no DOM para exibir o erro
+    const erroElement = document.createElement('p');
+    erroElement.textContent = mensagem;
+    erroElement.style.color = 'red'; // Para destacar a mensagem de erro
+    document.body.appendChild(erroElement);
+    // Lança o erro para manter o comportamento esperado
+    throw new Error(mensagem);
+}
+const produto = {
+    nome: 'Sabão',
+    preco: 5.99,
+    ValidarProduto() {
+        if (!this.nome || this.nome.trim().length == 0) {
+            falha('Precisa ter um nome');
+        }
+        if (this.preco <= 0) {
+            falha('Precisa ter um preco maior que zero');
+        }
+    }
+};
+// Envolvendo em try...catch para garantir que erros capturados também sejam exibidos no DOM
+try {
+    produto.ValidarProduto();
+}
+catch (e) {
+    // Exibe a mensagem do erro no console
+    console.error(`Erro capturado: ${e.message}`);
+    // Captura o erro e exibe no navegador
+    const erroElement = document.createElement('p');
+    erroElement.textContent = `Erro capturado: ${e.message}`;
+    erroElement.style.color = 'red';
+    document.body.appendChild(erroElement);
+}
+// Valores opcionais com valores Nulos -> um valor pode ser omitido ou nulo. Exemplo:
+// Note que para não ter problemas com o compilador e poder atribuir um valor nulo a uma variável numérica eu preciso declarar ela com o tipo number | null (Union Types).😃
+// let altura: number = null;  // Erro: 'null' is not assignable to type 'number'
+let alturaOpcional = 12;
+exibirqq(alturaOpcional); // Exibe: 12
+alturaOpcional = null;
+// console.log(alturaOpcional); // Exibe: null
+exibirqq(alturaOpcional); // Exibe: null
+const contato = {
+    nome: 'João',
+    telefone: '123456789',
+    telefone2: null
+};
+exibirqq(contato);
+exibirqq(contato.nome);
+exibirqq(contato.telefone);
+exibirqq(contato.telefone2);
+// Atenção🚀 se atribuir um tipo null a uma variável o TypeScript irá assumir como sendo do tipo any. Veja abaixo
+// let podeSerNulo: null = null;  // Aqui temos o tipo null de fato e não podermos atribuir nada além de null a essa variável
+let podeSerNulo = null; // O tipo any
+exibirqq(podeSerNulo);
+podeSerNulo = 10;
+exibirqq(podeSerNulo);
+podeSerNulo = 'abc';
+exibirqq(podeSerNulo);
+let contaBancaria = {
+    saldo: 3456,
+    depositar(valor) {
+        this.saldo += valor;
+    }
+};
+let correntista = {
+    nome: 'Maria',
+    contaBancaria: contaBancaria,
+    contatos: ['123456789', '987654321']
+};
+exibirqq(correntista);
+exibirqq(contaBancaria);
+correntista.contaBancaria.depositar(3000);
+exibirqq(correntista);
+exibirqq(correntista.contaBancaria.saldo);
+exibirqq(correntista.contatos);
+correntista.contatos.push('123456789');
+exibirqq(correntista.contatos);
+// Dica: Uma boa prática para evitar erros com tipos de dados, sempre criar interfaces para os tipos de dados que vamos utilizar.
