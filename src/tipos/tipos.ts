@@ -136,19 +136,29 @@ const somar = function(numA: number, numB: number): number {
 console.log(somar(2, 3));
 document.body.innerHTML += `<p>Somar: ${somar(2, 3.5)}</p>`;
 
-// Manipulando o DOM de fomra mais eficiente
+// ============================================Manipulando o DOM
+
+// Manipulando o DOM de fomra mais eficiente <=> aqui pausamos a tipagem para analisar o DOM
 
 // Para exibir textos
 function exibir(mensagem: string): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     elemento.textContent = mensagem;
     document.body.appendChild(elemento);
 }
 
-exibir('Olá, mundo!'); // Exibe: "Olá, mundo!"
+exibir('INICIO DA MANIPULAÇÃO DO DOM <=> Olá, mundo!'); // Exibe: "Olá, mundo!"
 
 // Para exibir números -> note que precisaremos converter o número para string
 function exibirnum(mensagem: number): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     elemento.textContent = mensagem.toString(); // Converte número para string
     document.body.appendChild(elemento);
@@ -158,6 +168,10 @@ exibirnum(42); // Exibe: "42"
 
 // Para exibir objetos -> note que precisaremos converter o objeto para string
 function exibirobj(mensagem: object): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     elemento.textContent = JSON.stringify(mensagem); // Converte objeto para string
     document.body.appendChild(elemento);
@@ -167,6 +181,10 @@ exibirobj({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}
 
 // Para exibir arrays -> note que precisaremos converter o array para string
 function exibirarray(mensagem: any[]): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     elemento.textContent = JSON.stringify(mensagem); // Converte array para string
     document.body.appendChild(elemento);
@@ -177,6 +195,10 @@ exibirarray(['maçã', 'banana', 'laranja']); // Exibe: '["maçã", "banana", "l
 
 // Exibir qualquer tipo usando any
 function exibirqualquer(mensagem: any): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     elemento.textContent = mensagem;
     document.body.appendChild(elemento);
@@ -190,6 +212,10 @@ exibirqualquer('melão'); // Exibe: "maçã"
 
 // Boas práticas de tipagem => use typeof
 function exibirqq(mensagem: any): void {
+      // Log no console
+    console.log(mensagem);
+
+    // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
     if (typeof mensagem === 'object') {
         elemento.textContent = JSON.stringify(mensagem);
@@ -208,6 +234,9 @@ exibirqq('abacaxi'); // Exibe: "maçã"
 // Usando de forma mais controlado o typeof
 
 function exibirtof(mensagem: string | number | object): void {
+    // Log no console
+    console.log(mensagem);
+
     // Cria um elemento <p> para adicionar ao DOM
     const elemento = document.createElement('p');
 
@@ -229,3 +258,98 @@ exibirtof(42); // Exibe: "42"
 exibirtof({nome: 'João', idade: 27}); // Exibe: '{"nome": "João", "idade": 27}'
 exibirtof([1, 2, 3]); // Exibe: "[1, 2, 3]"
 exibirtof('pera'); // Exibe: "maçã"
+exibirtof('===FIM!!!==='); // Exibe: "===FIM!!!==="
+
+// =============================================Retorno aos tipos
+// Retomando aos tipos
+// Tipo função --> uma função sendo usado como tipo, observe
+// Curiosidade o símbolo => recebe o nome "assinatura de tipo de função" ou "arrow function type annotation" no contexto do TypeScript. E claro indica o tipo de retorno da função!
+
+let calculo: (numeroA: number, numeroB: number) => number
+
+calculo = multiplicar
+exibirtof(calculo(5, 6));
+console.log(calculo(6, 6));  // Exibirá apenas no console -> não manipula o DOM
+
+// Variáveis do tipo objeto
+
+let usuario: {nome: string, idade: number, profissao: string} = {
+    nome: 'João',
+    idade: 27,
+    profissao: 'Desenvolvedor'
+}
+
+exibirtof(usuario); // Exibe: '{"nome": "João", "idade": 27, "profissao": "Desenvolvedor"}'
+
+// Note que ao respeitar os atributos e os tipos posso trabalhar com qualquer ordem
+usuario = {
+    profissao: 'Desenvolvedora',
+    nome: 'Maria',
+    idade: 25,  
+}
+
+exibirtof(usuario); // Exibe: '{"nome": "Maria", "idade": 25, "profissao": "Desenvolvedora"}'
+
+// =============================================Desafio
+
+let funcionario: {[supervisor: string]: string} = {
+    super1: 'João',
+    super2: 'Maria'   
+}
+
+// Note a definição da assinatura di Tipo da Função
+// let baterPonto: (horario: number) => string; -> essa parte define que baterPonto é uma variável que armazena uma função que recebe um horário e retorna uma string. Logo podemos dizer que baterPonto é uma função com a assinatura (horario: number) => string.
+
+// A segunda parte é a atribuição de Função à Variável= (horario: number): string => {
+//    if (horario > 8) {
+//      return 'Ponto normal';
+//    }
+//};
+
+// A função é uma arrow function, que é uma forma concisa de escrever funções no TypeScript/JavaScript.
+// Define que a função aceita um parâmetro horario do tipo number.
+// Especifica que a função retorna um valor do tipo string.
+
+let baterPonto: (horario: number) => string = (horario: number): string => {
+    if (horario > 8) {
+        return 'Ponto normal'
+    } else {
+        return 'Fora do horário de trabalho'
+    }
+}
+
+exibirtof(funcionario); // Exibe: '{"super1": "João", "super2": "Maria"}'
+exibirtof(baterPonto(9)); // Exibe: "Ponto normal"
+exibirtof(baterPonto(7)); // Exibe: "Fora do horário de trabalho"
+
+// =============================================Respondendo ao Desafio
+
+/* Criar um objeto funcionário com:
+    - Um array de strings com os nomes dos supervisores
+    - Uma função bater ponto que recebe a hora (número) e retorna uma string
+       -> Ponto normal (<= 8)
+       -> Fora do horário de trabalho (> 8)
+*/
+
+// Note que estamos definindo uma variável que irá receber um objeto com dois atributos e uma função que irá receber um horário e retornar uma string. func: é um objeto com dois atributos: supervisores e batPonto.
+
+let func: {
+    supervisores: string[],
+    batPonto: (horas: number) => string
+} = {
+    supervisores: ['Thiago', 'Melanie'],
+    batPonto: (horas: number): string => {
+        if (horas <= 8) {
+            return 'Ponto normal'
+        } else {
+            return 'Fora do horário de trabalho'
+        }
+}
+}
+
+exibirtof(func.supervisores); // Exibe: '{"supervisores": ["João", "Maria"], "batPonto": ƒ}'
+exibirtof(func.batPonto(9)); // Exibe: "Ponto normal"
+exibirtof(func.batPonto(7)); // Exibe: "Fora do horário de trabalho"
+exibirtof(func.batPonto(3)); // Exibe: "Ponto normal"
+
+// =============================================Fim
