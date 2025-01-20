@@ -8,7 +8,7 @@
 // noUnusedParameters = true -> impede que uma variável declarada não utilizada fique ativa (demanda um erro solicitando que ela seja utilizada e ou removida).
 // outDir = ./dist -> direcionada a saida de arquivos .js para a pasta dist. ou outra pasta que deseje, no exemplo aqui usamos a pasta dist, poderia usar "outDir": ./build
 /*
-    Impodrtante:
+    Importante:
 
         Links Úteis
 

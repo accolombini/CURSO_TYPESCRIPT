@@ -8,7 +8,7 @@
 // outDir = ./dist -> direcionada a saida de arquivos .js para a pasta dist. ou outra pasta que deseje, no exemplo aqui usamos a pasta dist, poderia usar "outDir": ./build
 
 /*
-    Impodrtante:
+    Importante:
 
         Links Úteis
 
