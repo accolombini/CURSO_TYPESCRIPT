@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p .",
     "watch": "tsc -w",
-    "start": "live-server ./"
-  },
+    "start": "concurrently \"npm run watch\" \"live-server ./\""
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/accolombini/CURSO_TYPESCRIPT.git"

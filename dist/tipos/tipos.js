@@ -390,3 +390,4 @@ exibirqq(correntista.contatos);
 correntista.contatos.push('123456789');
 exibirqq(correntista.contatos);
 // Dica: Uma boa prática para evitar erros com tipos de dados, sempre criar interfaces para os tipos de dados que vamos utilizar.
+//# sourceMappingURL=tipos.js.map

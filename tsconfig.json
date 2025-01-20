@@ -2,6 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
+    "noEmitOnError": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
