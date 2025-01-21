@@ -1,7 +1,7 @@
 // let & const => é preciso estar atento a questões de estar no bloco, fora do bloco "local" e "global".
 // API SWAPI: https://swapi.dev/api/people/1
 
-var seraQuePode = '?'  // Recurso chamado hoisting no JavaScript (versão mais antiga) - elevar, içar.
+let seraQuePode = '?'  // Recurso chamado hoisting no JavaScript (versão mais antiga) - elevar, içar.
 console.log(seraQuePode)
 
 let estaFrio = true
@@ -221,7 +221,7 @@ console.log(boasVindas);
 const boasVindas2 = `Boas vindas ${usuarioID} Notificações: ${notificacoes}`;
 console.log(boasVindas2);
 
-// Podemos usar uma lógica em cima de um template string. Observe o uso do parseInt() e da operação ternária ?
+// Podemos usar uma lógica em cima de um template string. Observe o uso do parseInt() e da operação ternária
 
-const boasVindas3 = `Boas vindas ${usuarioID} Notificações: ${parseInt(notificacoes) > 10 ? '+ 10': notificacoes}`;
+const boasVindas3 = `Boas vindas ${usuarioID} Notificações: ${parseInt(notificacoes) > 10 ? '+10': notificacoes}`;
 console.log(boasVindas3);
