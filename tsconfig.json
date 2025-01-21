@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "esnext",
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "sourceMap": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

@@ -115,7 +115,7 @@
 ### Instalando um servidor simples para auxiliar no processo de testes e desenvolvimento
 
 ```script
-  npm i -s live-server  
+  npm i -s live-np,r  
   
   <!-- Note que o npm foi usado com a opção -s apenas para salvar a dependência, lembrando que -g instalaria globalmente. -->
 ```
