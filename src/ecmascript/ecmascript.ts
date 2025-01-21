@@ -225,3 +225,40 @@ console.log(boasVindas2);
 
 const boasVindas3 = `Boas vindas ${usuarioID} Notificações: ${parseInt(notificacoes) > 10 ? '+10': notificacoes}`;
 console.log(boasVindas3);
+
+// Falando de Promise -> que é uma forma de falar de algo que vai chegar no futuro -> é uma das formas de trabalhar com assincronismo.
+
+// Forma antiga -> Callback => atenção ficará comentada só para evitar o tempo de espera no desenvolvimento.
+
+function esperar3s(callback: (dado: string) => void) {
+    setTimeout(() => {
+        callback('3 segundos passaram...');
+    }, 3000);
+}
+
+esperar3s(function(resultado: string) {
+    console.log(resultado);
+});
+
+// Forma nova -> Promise observe o uso do operador .then
+
+function esperar3sPromise() {
+    return new Promise((resolve: any) => {
+        setTimeout(() => {
+            resolve('3 segundos passaram com Promise!...');
+        }, 3000);
+    });
+}
+
+esperar3sPromise()
+    .then(dado => console.log(dado));
+
+// Aplicando Promise em uma API confira -> importante
+
+fetch('https://swapi.dev/api/people/1/')
+    .then(res => res.json())
+    .then(personagem => personagem.films)
+    .then(films => fetch(films[0]))
+    .then(resFilm => resFilm.json())
+    .then(filme => console.log(filme.title))
+    .catch(err => console.log('Catch!!!' + err));
