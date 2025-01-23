@@ -55,6 +55,6 @@ const estagiario = new Estagiario;
 console.log(estagiario.primeiroNome);
 estagiario.primeiroNome = 'Le';
 console.log(estagiario.primeiroNome);
-estagiario.primeiroNome = 'Leonardo';
+estagiario.primeiroNome = 'Amarildo';
 console.log(estagiario.primeiroNome);
 //# sourceMappingURL=desafios.js.map
