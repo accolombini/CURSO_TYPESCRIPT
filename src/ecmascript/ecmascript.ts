@@ -229,36 +229,74 @@ console.log(boasVindas3);
 // Falando de Promise -> que é uma forma de falar de algo que vai chegar no futuro -> é uma das formas de trabalhar com assincronismo.
 
 // Forma antiga -> Callback => atenção ficará comentada só para evitar o tempo de espera no desenvolvimento.
+// Os comentários forama gerados para evitar o tempo de espera no desenvolvimento. Para verificar o comportamento sem os comentários, descomente os comentários. <command + />
 
-function esperar3s(callback: (dado: string) => void) {
-    setTimeout(() => {
-        callback('3 segundos passaram...');
-    }, 3000);
+// function esperar3s(callback: (dado: string) => void) {
+//     setTimeout(() => {
+//         callback('3 segundos passaram...');
+//     }, 3000);
+// }
+
+// esperar3s(function(resultado: string) {
+//     console.log(resultado);
+// });
+
+// // Forma nova -> Promise observe o uso do operador .then
+
+// function esperar3sPromise() {
+//     return new Promise((resolve: any) => {
+//         setTimeout(() => {
+//             resolve('3 segundos passaram com Promise!...');
+//         }, 3000);
+//     });
+// }
+
+// esperar3sPromise()
+//     .then(dado => console.log(dado));
+
+// // Aplicando Promise em uma API confira -> importante
+
+// fetch('https://swapi.dev/api/people/1/')
+//     .then(res => res.json())
+//     .then(personagem => personagem.films)
+//     .then(films => fetch(films[0]))
+//     .then(resFilm => resFilm.json())
+//     .then(filme => console.log(filme.title))
+//     .catch(err => console.log('Catch!!!' + err));
+
+// ------------------------------------- DESAFIO
+
+// Desafios
+// Exercicio 1
+const dobro = (valor: number): number => valor * 2
+
+console.log(dobro(10))
+
+// Exercicio 2
+const dizerOla = function (nome: string = 'Pessoa'): void {
+    console.log(`Ola ${nome}`)       
 }
 
-esperar3s(function(resultado: string) {
-    console.log(resultado);
-});
+dizerOla()
+dizerOla('Anna')
 
-// Forma nova -> Promise observe o uso do operador .then
+// Exercicio 3
+const nums = [-3, 33, 38, 5]
+// Imprimir o menor valor
+console.log(Math.min(...nums))
 
-function esperar3sPromise() {
-    return new Promise((resolve: any) => {
-        setTimeout(() => {
-            resolve('3 segundos passaram com Promise!...');
-        }, 3000);
-    });
-}
+// Exercicio 4
+const array = [55, 20]
+// Adicionar todos os elementos de "nums" em array
+array.push(...nums)
+console.log(array)
 
-esperar3sPromise()
-    .then(dado => console.log(dado));
+// Exercicio 5
+const notas = [8.5, 6.3, 9.4]
+const [nota1, nota2, nota3] = notas
+console.log(nota1, nota2, nota3)
 
-// Aplicando Promise em uma API confira -> importante
-
-fetch('https://swapi.dev/api/people/1/')
-    .then(res => res.json())
-    .then(personagem => personagem.films)
-    .then(films => fetch(films[0]))
-    .then(resFilm => resFilm.json())
-    .then(filme => console.log(filme.title))
-    .catch(err => console.log('Catch!!!' + err));
+// Exercicio 6
+const cientista = { primeiroNome: 'Will', expeciencia: 12 }
+const {primeiroNome, expeciencia} = cientista
+console.log(primeiroNome, expeciencia)
