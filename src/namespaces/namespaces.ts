@@ -71,9 +71,9 @@
 
 // Executando a partir dos namespaces criados
 
-const PI = 2.99
+// const PI = 2.99  // Comentado apenas para trabalhar com módulos
 
 console.log(Geometria.Area.circunferencia(10))
 console.log(Geometria.Area.retangulo(10, 20))
 
-console.log(PI)
+// console.log(PI)  // Comentado apenas para trabalhar com módulos

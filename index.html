@@ -20,7 +20,8 @@
         <!-- Título da página -->
         <h1>Introdução ao TypeScript</h1>
 
-        <!-- Scripts dos arquivos JavaScript gerados -->
+        <!-- Script do SystemJS -->
+        <script src="node_modules/systemjs/dist/system.js"></script>
         <script src="dist/introducao/basico.js" type="text/javascript" defer></script>
         <script src="dist/tipos/tipos.js" type="text/javascript" defer></script>
         <script src="dist/compilador/compilador.js" type="text/javascript" defer></script>
@@ -31,7 +32,33 @@
         <script src="dist/namespaces/geometriaRect.js" type="text/javascript" defer></script>
         <script src="dist/namespaces/geometriaCirc.js" type="text/javascript" defer></script>
         <script src="dist/namespaces/namespaces.js" type="text/javascript" defer></script>
+        <!-- <script src="dist/modulos/modulos.js" type="text/javascript" defer></script> -->
         <!-- Mensagem de fallback -->
+
+        <!-- Configuração e carregamento do módulo -->
+        <script>
+            // Configuração do SystemJS
+            SystemJS.config({
+                baseURL: '/dist', // Base para o diretório dist
+                transpiler: 'plugin-babel', // Usa o plugin Babel para transpilar ES modules
+                map: {
+                    'plugin-babel': './node_modules/systemjs-plugin-babel/plugin-babel.js',
+                    'systemjs-babel-build': './node_modules/systemjs-plugin-babel/systemjs-babel-browser.js'
+                },
+                packages: {
+                    'modulos': {
+                        main: 'modulos.js', // Define o arquivo principal
+                        defaultExtension: 'js' // Define a extensão padrão como .js
+                    }
+                }
+            });
+
+            // Importação do módulo
+            SystemJS.import('modulos').catch((err) => {
+                console.error('Erro ao carregar o módulo:', err);
+            });
+        </script>
+
         <noscript>
             O JavaScript está desabilitado ou não foi carregado corretamente.
         </noscript>
